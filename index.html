@@ -3,10 +3,48 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>¡Hola, mundo!</title>
+  <title>Cómo usar Errand</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 720px; margin: 2rem auto; padding: 0 1rem; line-height: 1.6; }
+    img { max-width: 160px; }
+    code { background: #eee; padding: 0.1em 0.4em; border-radius: 4px; }
+  </style>
 </head>
 <body>
-  <h1>¡Hola, mundo!</h1>
+  <h1>Cómo usar Errand</h1>
   <img src="errand.gif" alt="Errand">
+  <p>Errand te permite cambiar este repositorio enviando un mensaje por Telegram. No necesitas abrir un editor ni una terminal.</p>
+
+  <h2>Cómo funciona</h2>
+  <ol>
+    <li><strong>Escribe un encargo</strong> por Telegram describiendo el cambio que quieres en el repositorio.</li>
+    <li><strong>Errand trabaja solo</strong> en un contenedor: lee el código, hace el cambio y ejecuta los tests, el linter o el build si existen.</li>
+    <li><strong>Recibes un resumen</strong> de lo que se ha hecho y se abre una Pull Request con el cambio para que lo revises.</li>
+  </ol>
+
+  <h2>Funcionalidades</h2>
+  <ul>
+    <li><strong>Encargos en lenguaje natural:</strong> cualquier mensaje se interpreta como una petición de cambio. Si escribes una regla o preferencia (por ejemplo, «los mensajes deben estar en español»), Errand cambia el código para cumplirla.</li>
+    <li><strong>Cambios mínimos:</strong> solo toca lo necesario para completar el encargo, sin reformatear ni refactorizar el resto.</li>
+    <li><strong>Respeta las convenciones del repositorio:</strong> lee el <code>CLAUDE.md</code> si existe y lo sigue.</li>
+    <li><strong>Comprobaciones automáticas:</strong> si el repositorio tiene tests, linter o build, se ejecutan antes de terminar y se arreglan los fallos que haya provocado.</li>
+    <li><strong>Preguntas cuando hace falta:</strong> si falta información o hay varias opciones razonables, Errand se detiene y te hace una pregunta, a menudo con opciones cortas para elegir. Tu respuesta le llega en el siguiente turno.</li>
+    <li><strong>Imágenes como contexto:</strong> puedes adjuntar imágenes al encargo. Se usan como referencia y no se copian al repositorio salvo que lo pidas.</li>
+    <li><strong>Pull Request automática:</strong> Errand se encarga de hacer el commit, el push y abrir la PR. El título y la descripción salen del resumen final.</li>
+    <li><strong>Resumen en castellano:</strong> las preguntas y el resumen final siempre se escriben en español.</li>
+  </ul>
+
+  <h2>Qué no hace</h2>
+  <ul>
+    <li>No toca archivos secretos (<code>.env</code>, claves) ni la configuración de CI, salvo que el encargo lo pida.</li>
+    <li>No modifica la configuración de git del repositorio (remotos, hooks, etc.).</li>
+  </ul>
+
+  <h2>Consejos para escribir buenos encargos</h2>
+  <ul>
+    <li>Sé concreto: indica qué archivo o qué comportamiento quieres cambiar.</li>
+    <li>Pide una cosa por encargo para obtener PRs pequeñas y fáciles de revisar.</li>
+    <li>Si algo no sale como esperabas, envía otro encargo describiendo el ajuste.</li>
+  </ul>
 </body>
 </html>
