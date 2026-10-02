@@ -3,46 +3,92 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cómo usar Errand</title>
+  <title>Cómo usar Errand · Studio LXD</title>
   <style>
+    :root { --accent: #1d4ed8; }
     body { font-family: system-ui, sans-serif; max-width: 720px; margin: 2rem auto; padding: 0 1rem; line-height: 1.6; }
     img { max-width: 160px; }
-    :root { --accent: #d62828; }
     h1, h2 { color: var(--accent); }
     h2 { border-bottom: 2px solid var(--accent); padding-bottom: 0.2rem; }
     li::marker { color: var(--accent); }
     code { background: #eee; padding: 0.1em 0.4em; border-radius: 4px; }
+    summary { cursor: pointer; font-weight: 600; margin-top: 0.6rem; }
+    .studio { color: #555; margin-top: 0; }
   </style>
 </head>
 <body>
   <h1>Cómo usar Errand</h1>
+  <p class="studio">Una herramienta de Studio LXD</p>
   <img src="errand.gif" alt="Errand">
-  <p>Errand te permite cambiar este repositorio enviando un mensaje por Telegram. No necesitas abrir un editor ni una terminal.</p>
 
-  <h2>Cómo funciona</h2>
-  <ol>
-    <li><strong>Escribe un encargo</strong> por Telegram describiendo el cambio que quieres en el repositorio.</li>
-    <li><strong>Errand trabaja solo</strong>: lee el código, hace el cambio y ejecuta los tests, el linter o el build si existen.</li>
-    <li><strong>Recibes un resumen</strong> de lo que se ha hecho y se abre una Pull Request con el cambio para que lo revises.</li>
-  </ol>
+  <section id="que-es">
+    <h2>Qué es Errand</h2>
+    <p>Errand es un bot de Telegram que lanza encargos de programación a Claude Code. Le escribes lo que quieres cambiar en un repositorio y él se ocupa del trabajo. No necesitas abrir un editor ni una terminal.</p>
+  </section>
 
-  <h2>Funcionalidades</h2>
-  <ul>
-    <li><strong>Encargos en lenguaje natural:</strong> cualquier mensaje se interpreta como una petición de cambio.</li>
-    <li><strong>Cambios mínimos:</strong> solo toca lo necesario para completar el encargo, sin reformatear ni refactorizar el resto.</li>
-    <li><strong>Respeta las convenciones del repositorio:</strong> lee el <code>CLAUDE.md</code> si existe y lo sigue.</li>
-    <li><strong>Comprobaciones automáticas:</strong> si el repositorio tiene tests, linter o build, se ejecutan antes de terminar y se arreglan los fallos que haya provocado.</li>
-    <li><strong>Preguntas cuando hace falta:</strong> si falta información o hay varias opciones razonables, Errand se detiene y te hace una pregunta, a menudo con opciones cortas para elegir. Tu respuesta le llega en el siguiente turno.</li>
-    <li><strong>Imágenes como contexto:</strong> puedes adjuntar imágenes al encargo. Se usan como referencia y no se copian al repositorio salvo que lo pidas.</li>
-    <li><strong>Pull Request automática:</strong> Errand se encarga de hacer el commit, el push y abrir la PR. El título y la descripción salen del resumen final.</li>
-    <li><strong>Resumen en castellano:</strong> las preguntas y el resumen final siempre se escriben en español.</li>
-  </ul>
+  <section id="empezar">
+    <h2>Cómo empezar</h2>
+    <ol>
+      <li>Abre Telegram y busca el bot <strong>@errand_slxd_bot</strong>.</li>
+      <li>Envíale una orden, por ejemplo <code>/errand mi-repo Añade un botón de contacto</code>.</li>
+      <li>Espera su respuesta: te hará preguntas si le falta información y te avisará cuando termine.</li>
+    </ol>
+  </section>
 
-  <h2>Consejos para escribir buenos encargos</h2>
-  <ul>
-    <li>Sé concreto: indica qué archivo o qué comportamiento quieres cambiar.</li>
-    <li>Pide una cosa por encargo para obtener PRs pequeñas y fáciles de revisar.</li>
-    <li>Si algo no sale como esperabas, envía otro encargo describiendo el ajuste.</li>
-  </ul>
+  <section id="ordenes">
+    <h2>Órdenes</h2>
+    <ul>
+      <li><code>/errand [modelo] repo|alias instrucciones</code>: lanza un encargo. Indica opcionalmente el modelo, el repositorio (o su alias) y las instrucciones de lo que quieres.</li>
+      <li><code>/improve</code>: pide una mejora.</li>
+      <li><code>/plan</code>: pide un plan antes de hacer cambios.</li>
+      <li><code>/ask</code>: hace una pregunta.</li>
+      <li><code>/repo</code>: gestiona los repositorios disponibles.</li>
+      <li><code>/status</code>: consulta el estado de tus encargos.</li>
+      <li><code>/stats</code>: muestra estadísticas de uso.</li>
+      <li><code>/cancel</code>: cancela un encargo en curso.</li>
+    </ul>
+  </section>
+
+  <section id="interaccion">
+    <h2>Otras formas de interactuar</h2>
+    <ul>
+      <li><strong>Responder a los mensajes del bot:</strong> contesta directamente al mensaje al que se refiere tu respuesta.</li>
+      <li><strong>Pulsar sus botones:</strong> cuando el bot ofrece opciones, elige una con un toque.</li>
+      <li><strong>Notas de voz:</strong> puedes responder con una nota de voz en lugar de escribir.</li>
+    </ul>
+  </section>
+
+  <section id="consejos">
+    <h2>Consejos para escribir buenos encargos</h2>
+    <ul>
+      <li>Sé concreto: indica qué archivo o qué comportamiento quieres cambiar.</li>
+      <li>Pide una cosa por encargo para obtener cambios pequeños y fáciles de revisar.</li>
+      <li>Si algo no sale como esperabas, envía otro encargo describiendo el ajuste.</li>
+    </ul>
+  </section>
+
+  <section id="faq">
+    <h2>Preguntas frecuentes</h2>
+    <details>
+      <summary>¿Necesito saber programar?</summary>
+      <p>No. Basta con describir en lenguaje natural lo que quieres cambiar; Errand se encarga del resto.</p>
+    </details>
+    <details>
+      <summary>¿Dónde uso Errand?</summary>
+      <p>En Telegram, hablando con el bot <strong>@errand_slxd_bot</strong>.</p>
+    </details>
+    <details>
+      <summary>¿Puedo hablarle en lugar de escribir?</summary>
+      <p>Sí, puedes responder con una nota de voz.</p>
+    </details>
+    <details>
+      <summary>¿Qué hago si me equivoco al enviar un encargo?</summary>
+      <p>Usa <code>/cancel</code> para cancelar el encargo en curso y envía uno nuevo.</p>
+    </details>
+    <details>
+      <summary>¿Cómo sé en qué punto está mi encargo?</summary>
+      <p>Usa <code>/status</code> para consultar su estado.</p>
+    </details>
+  </section>
 </body>
 </html>
